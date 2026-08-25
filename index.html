@@ -111,6 +111,12 @@
     letter-spacing:0.06em;
     margin-top:4px;
   }
+  .stat .sub{
+    font-size:11px;
+    color:var(--grey);
+    margin-top:6px;
+    font-style:italic;
+  }
   h2{
     font-family:'Inter', sans-serif;
     font-weight:900;
@@ -224,6 +230,10 @@
     color:var(--core);
     white-space:nowrap;
   }
+  .tier-pill.verified{
+    background:var(--trust);
+    color:#fff;
+  }
   .model-tag{
     font-size:12.5px;
     color:var(--grey);
@@ -265,7 +275,7 @@
 
   <div class="kicker">Signal · Market Data</div>
   <h1>North America's Contact Center Market Is Splitting Into Two Very Different Races</h1>
-  <p class="subtitle">On-premises still has a clear leader. Cloud doesn't — yet.</p>
+  <p class="subtitle">On-premises still has a clear leader. On a primary-source basis, so does cloud — though the two aren't measured the same way yet.</p>
 
   <div class="divider"></div>
 
@@ -273,30 +283,35 @@
     North America's contact center market — CCaaS and on-premises combined — sits at roughly
     <strong>~$3.7B–$3.9B in 2025</strong>. Split it in two, though, and the competitive picture changes completely.
     On-premises is a legacy stronghold: <strong>Avaya alone holds close to a third of it</strong>.
-    CCaaS has no equivalent leader — the top three players are separated by single digits, and over
-    a third of the market sits outside the named top five entirely.
+    CCaaS looked leaderless on analyst composites alone — but Five9's own audited filings put it ahead of
+    the pack once isolated to pure-play subscription revenue, a bar its peers aren't yet measured against
+    the same way. Over a third of the category still sits outside the named top five.
   </p>
 
   <div class="stat-row">
     <div class="stat"><div class="num">~$3.7–$3.9B</div><div class="lbl">Combined NA market, 2025</div></div>
     <div class="stat"><div class="num">30–38%</div><div class="lbl">Avaya's on-prem tier</div></div>
-    <div class="stat"><div class="num">20–25%</div><div class="lbl">NiCE's CCaaS tier — the largest, not a lead</div></div>
+    <div class="stat">
+      <div class="num">29.5–33.8%</div>
+      <div class="lbl">Five9's CCaaS tier — SEC-verified, largest measured</div>
+      <div class="sub">NiCE's analyst-composite estimate: 20–25%</div>
+    </div>
     <div class="stat"><div class="num">~37%</div><div class="lbl">Share held outside the top 5</div></div>
   </div>
 
   <h2>CCaaS — ~$2.7B–$2.8B</h2>
-  <p class="section-note">No vendor clears a quarter of the market. Fragmentation, not dominance, defines this category.</p>
+  <p class="section-note">On an SEC-verified basis, Five9 clears more than a quarter of the market; on the analyst-composite basis its peers are measured on, none does. Over a third of the category still sits outside the named top five.</p>
   <div class="bar-block">
     <div class="bar-head"><span class="name">Cloud contact center platforms</span><span class="size">Category base: ~$2.7B–$2.8B</span></div>
     <div class="bar">
-      <div class="seg" style="width:22.5%; background:var(--tier1);">NiCE</div>
-      <div class="seg" style="width:14%; background:var(--tier2);">Five9</div>
+      <div class="seg" style="width:31.6%; background:var(--tier1);">Five9</div>
+      <div class="seg" style="width:22.5%; background:var(--tier2);">NiCE</div>
       <div class="seg" style="width:9.5%; background:var(--tier3);">Amazon</div>
-      <div class="seg other" style="width:54%;">Other / Genesys / long tail</div>
+      <div class="seg other" style="width:36.4%;">Other / Genesys / long tail</div>
     </div>
     <div class="legend">
-      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier1);"></span>NiCE — Tier 1 (20–25%)</span>
-      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier2);"></span>Five9 — Tier 2 (12–16%)</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier1);"></span>Five9 — Tier 1 (29.5–33.8%, SEC-verified)</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier2);"></span>NiCE — Tier 2 (20–25%, analyst composite)</span>
       <span class="legend-item"><span class="legend-swatch" style="background:var(--tier3);"></span>Amazon Connect — Tier 3 (8–11%)</span>
       <span class="legend-item"><span class="legend-swatch" style="background:var(--other);"></span>Other / long tail</span>
     </div>
@@ -336,6 +351,12 @@
     </thead>
     <tbody>
       <tr>
+        <td class="vendor-name">Five9<sup>*</sup></td>
+        <td class="model-tag">CCaaS Only</td>
+        <td><span class="tier-pill verified">CCaaS T1 · 29.5–33.8%</span></td>
+        <td>CCaaS (~$2.7–$2.8B)</td>
+      </tr>
+      <tr>
         <td class="vendor-name">Genesys</td>
         <td class="model-tag">CCaaS + On-Premises</td>
         <td><span class="tier-pill">Combined T1 · 15–20%</span></td>
@@ -344,13 +365,7 @@
       <tr>
         <td class="vendor-name">NiCE</td>
         <td class="model-tag">CCaaS Only</td>
-        <td><span class="tier-pill">CCaaS T1 · 20–25%</span></td>
-        <td>CCaaS (~$2.7–$2.8B)</td>
-      </tr>
-      <tr>
-        <td class="vendor-name">Five9<sup>*</sup></td>
-        <td class="model-tag">CCaaS Only</td>
-        <td><span class="tier-pill">CCaaS T2 · 12–16%</span></td>
+        <td><span class="tier-pill">CCaaS T2 · 20–25%</span></td>
         <td>CCaaS (~$2.7–$2.8B)</td>
       </tr>
       <tr>
@@ -382,10 +397,10 @@
 
   <footer>
     <div class="footnotes">
-      <p><span class="fn-title">Source Attribution.</span> Market estimates incorporate third-party industry research and publicly available disclosures.</p>
-      <p><span class="fn-title">Category-Scoped Tiers.</span> Market tiers are calculated directly against each vendor's primary deployment market base (~$2.7–$2.8B for CCaaS; ~$1.0–$1.1B for On-Premises). Genesys is evaluated against the combined ~$3.7–$3.9B market due to its dual presence. Tiers are non-overlapping (Tier 1 = 20–25%; Tier 2 = 12–16%; Tier 3 = 8–11%).</p>
+      <p><span class="fn-title">Source Attribution.</span> Market estimates incorporate secondary, desktop research, audited SEC filings for select vendors (see Methodology & Data Hierarchy Note below), and publicly available disclosures.</p>
+      <p><span class="fn-title">Category-Scoped Tiers.</span> Market tiers are calculated directly against each vendor's primary deployment market base (~$2.7–$2.8B for CCaaS; ~$1.0–$1.1B for On-Premises). Genesys is evaluated against the combined ~$3.7–$3.9B market due to its dual presence. Five9's Tier 1 range (29.5–33.8%) is derived from audited SEC filings; NiCE's Tier 2 (20–25%) and Amazon Connect's Tier 3 (8–11%) reflect analyst-composite estimates. These figures are not measured on a like-for-like basis — see the Methodology & Data Hierarchy Note.</p>
       <p><span class="fn-title">Portfolio Placement.</span> Deployment models reflect full portfolio offerings. For vendors with hybrid or cloud offerings sitting outside their top-5 ranking (Avaya AXP, Cisco Webex CCaaS), secondary deployment revenues sit within the respective "Other" categories.</p>
-      <p><span class="fn-title">* Five9 Status.</span> Five9 share reflects composite benchmarks pending SEC Note 11 verification.</p>
+      <p><span class="fn-title">* Methodology &amp; Data Hierarchy Note.</span> Five9 Data Basis: Derived directly from audited SEC disclosures (FY2025 Form 10-K/8-K). Reflects pure software subscription revenue ($930.8M subscription base at 81% of total revenue). The US-only subscription floor of $826.5M establishes a conservative lower bound of 29.5%–30.6% against the $2.7B–$2.8B North American CCaaS baseline. True NA share is bounded above by 33.8%, assuming a similar subscription mix internationally — not independently confirmed. Peer Data Asymmetry: Peer vendor market shares (NiCE, Genesys, Amazon Connect) rely on desk research estimates and secondary market benchmarks. While NiCE's global CX-cloud revenue is verified at $1,869.7M (reflecting its 83.53% Customer Engagement segment split), its primary filings do not break out a North American-specific subscription line. AWS Connect revenue is unseparated within corporate AWS disclosures, and Genesys is privately held. Direct comparisons between SEC-derived pure-play data (Five9) and desk research composites carry natural boundary and reporting variances.</p>
       <p><span class="fn-title">† Consolidated Other Bucket.</span> The "Other" row includes Talkdesk (~6% CCaaS), Alvaria (~7% On-Prem), and Enghouse (~5% On-Prem), consolidated from top-5 inputs for presentation brevity.</p>
       <p><span class="fn-title">MultiCaaS Entrants.</span> "Other" also includes MultiCaaS entrants (RingCentral, Zoom, 8x8) whose primary business is UCaaS with CCaaS as a secondary offering. None of the three discloses CCaaS-specific revenue — all three report as a single operating segment. 8x8 has stated a strategic shift toward CCaaS and discontinued ARR reporting in FY2025 due to growing CCaaS/CPaaS revenue mix, though no dollar or percentage figure is disclosed.</p>
     </div>
