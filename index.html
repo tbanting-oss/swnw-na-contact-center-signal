@@ -1,511 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>North America Contact Center Market &mdash; SWNW Signal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-      /* SWNW Brand Cheat Sheet V1 (Feb 2026) &mdash; light + dark */
-      :root{
-            --core:#0D0A1F;
-            --insight:#3B408C;
-            --trust:#8C2EAD;
-            --edge:#40E0D1;
-            --base:#F5F2F0;
-            --grey:#6B6E7A;
-            --line:#E4E1DA;
-            --panel:#FFFFFF;
-            --tier1:var(--trust);
-            --tier2:var(--insight);
-            --tier3:#B98FCC;
-            --other:#D9D5CC;
-            --genesys-bg:#F4F0FA;
-      }
-      html[data-theme="dark"]{
-            --core:#F0EDF7;
-            --insight:#8C92E8;
-            --trust:#D68EF0;
-            --edge:#5CF2E3;
-            --base:#0D0A1F;
-            --grey:#A6A2B8;
-            --line:#2E2A44;
-            --panel:#171331;
-            --tier3:#6E4E8C;
-            --other:#332F48;
-            --genesys-bg:#221C3D;
-      }
-      *{box-sizing:border-box;}
-      body{
-            margin:0;
-            background:var(--base);
-            color:var(--core);
-            font-family:'Inter', sans-serif;
-            font-weight:500;
-            -webkit-font-smoothing:antialiased;
-            transition:background 0.2s ease, color 0.2s ease;
-      }
-      .page{
-            max-width:860px;
-            margin:0 auto;
-            padding:56px 40px 80px;
-            position:relative;
-      }
-      .theme-toggle{
-            position:absolute;
-            top:56px;
-            right:40px;
-            display:flex;
-            align-items:center;
-            gap:8px;
-            font-family:'Inter', sans-serif;
-            font-weight:600;
-            font-size:12px;
-            color:var(--grey);
-            background:var(--panel);
-            border:1px solid var(--line);
-            border-radius:20px;
-            padding:6px 14px 6px 6px;
-            cursor:pointer;
-            user-select:none;
-      }
-      .theme-toggle .dot{
-            width:16px;height:16px;
-            border-radius:50%;
-            background:var(--trust);
-            display:inline-block;
-            transition:transform 0.15s ease;
-      }
-      .theme-toggle:hover .dot{ transform:scale(1.1); }
-      .kicker{
-            font-family:'Inter', sans-serif;
-            font-weight:700;
-            font-size:12px;
-            letter-spacing:0.14em;
-            text-transform:uppercase;
-            color:var(--trust);
-            display:flex;
-            align-items:center;
-            gap:10px;
-            margin-bottom:18px;
-      }
-      .kicker::before{
-            content:"";
-            width:26px;
-            height:1px;
-            background:var(--edge);
-            display:inline-block;
-      }
-      h1{
-            font-family:'Inter', sans-serif;
-            font-weight:900;
-            font-size:40px;
-            line-height:1.12;
-            color:var(--core);
-            margin:0 0 12px;
-            letter-spacing:-0.01em;
-      }
-      .subtitle{
-            font-family:'Inter', sans-serif;
-            font-weight:500;
-            font-style:italic;
-            font-size:18px;
-            color:var(--grey);
-            margin:0 0 34px;
-            max-width:560px;
-      }
-      .divider{
-            height:2px;
-            background:linear-gradient(90deg, var(--edge) 0 48px, var(--line) 48px 100%);
-            margin:32px 0;
-      }
-      .lede{
-            font-size:17px;
-            line-height:1.65;
-            max-width:640px;
-            margin-bottom:8px;
-      }
-      .lede strong{ color:var(--core); }
-      .stat-row{
-            display:flex;
-            gap:28px;
-            margin:34px 0 8px;
-            flex-wrap:wrap;
-      }
-      .stat{
-            flex:1 1 150px;
-            background:var(--panel);
-            border:1px solid var(--line);
-            border-top:3px solid var(--trust);
-            padding:16px 18px;
-      }
-      .stat .num{
-            font-family:'Inter', sans-serif;
-            font-size:26px;
-            color:var(--core);
-            font-weight:900;
-      }
-      .stat .lbl{
-            font-size:12px;
-            color:var(--grey);
-            text-transform:uppercase;
-            letter-spacing:0.06em;
-            margin-top:4px;
-      }
-      .stat .sub{
-            font-size:11px;
-            color:var(--grey);
-            margin-top:6px;
-            font-style:italic;
-      }
-      h2{
-            font-family:'Inter', sans-serif;
-            font-weight:900;
-            font-size:22px;
-            color:var(--core);
-            margin:48px 0 6px;
-      }
-      .section-note{
-            font-size:13px;
-            color:var(--grey);
-            margin-bottom:22px;
-      }
-      .bar-block{ margin-bottom:38px; }
-      .bar-head{
-            display:flex;
-            justify-content:space-between;
-            align-items:baseline;
-            margin-bottom:10px;  }
-      .bar-head .name{
-            font-family:'Inter', sans-serif; font-weight:700;
-            font-size:12px;
-            letter-spacing:0.08em;
-            text-transform:uppercase;
-            color:var(--core);
-            font-weight:500;
-      }
-      .bar-head .size{
-            font-size:13px;
-            color:var(--grey);
-      }
-      .bar{
-            display:flex;
-            width:100%;
-            height:38px;
-            border:1px solid var(--line);
-            overflow:hidden;
-      }
-      .seg{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            color:#fff;
-            font-size:12px;
-            font-weight:600;
-            position:relative;
-            white-space:nowrap;
-            overflow:hidden;
-      }
-      .seg.other{
-            color:var(--grey);
-            background:var(--other) !important;
-      }
-      .legend{
-            display:flex;
-            gap:18px;
-            flex-wrap:wrap;
-            margin-top:10px;
-      }
-      .legend-item{
-            font-size:12px;
-            color:var(--grey);
-            display:inline-flex;
-            align-items:center;
-            gap:6px;
-            margin-right:16px;
-      }
-      .legend-swatch{
-            width:10px;height:10px;
-            display:inline-block;
-      }
-      .genesys-note{
-            background:var(--genesys-bg);
-            border-left:3px solid var(--trust);
-            padding:12px 16px;
-            font-size:13px;
-            color:var(--core);
-            margin-top:4px;
-      }
-      table{
-            width:100%;
-            border-collapse:collapse;
-            margin-top:14px;
-            font-size:14px;
-      }
-      th{
-            text-align:left;
-            font-family:'Inter', sans-serif; font-weight:700;
-            font-size:11px;
-            letter-spacing:0.06em;
-            text-transform:uppercase;
-            color:var(--grey);
-            font-weight:500;
-            padding:10px 12px;
-            border-bottom:2px solid var(--trust);
-      }
-      td{
-            padding:12px;
-            border-bottom:1px solid var(--line);
-            vertical-align:top;
-      }
-      tr:hover td{ background:var(--genesys-bg); }
-      .vendor-name{ font-weight:600; }
-      .tier-pill{
-            display:inline-block;
-            font-family:'Inter', sans-serif; font-weight:700;
-            font-size:11.5px;
-            padding:3px 9px;
-            border-radius:2px;
-            background:var(--genesys-bg);
-            color:var(--core);
-            white-space:nowrap;
-      }
-      .tier-pill.verified{    background:var(--trust);
-                              color:#fff;
-                         }
-      .model-tag{
-            font-size:12.5px;
-            color:var(--grey);
-      }
-      footer{
-            margin-top:52px;
-            padding-top:24px;
-            border-top:1px solid var(--line);
-      }
-      .footnotes{
-            font-size:12px;
-            color:var(--grey);
-            line-height:1.7;
-      }
-      .footnotes .fn-title{
-            font-weight:600;
-            color:var(--core);
-      }
-      .footnotes p{ margin:0 0 10px; }
-      .brand-foot{
-            margin-top:30px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            font-family:'Inter', sans-serif; font-weight:700;
-            font-size:11px;
-            color:var(--grey);
-            letter-spacing:0.05em;
-      }
-      @media (max-width:600px){
-            .page{padding:36px 20px 60px;}
-            h1{font-size:30px;}
-            .stat-row{gap:14px;}
-            .theme-toggle{ position:static; margin-bottom:16px; display:inline-flex; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>North America Contact Center Market — SWNW Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* SWNW Brand Cheat Sheet V1 (Feb 2026) */
+  :root{
+    --core:#0D0A1F;      /* Core - primary ink / dark bg */
+    --insight:#3B408C;   /* Insight - indigo */
+    --trust:#8C2EAD;     /* Trust - purple/magenta */
+    --edge:#40E0D1;      /* Edge - turquoise accent */
+    --base:#F5F2F0;      /* Base - off-white */
+    --grey:#6B6E7A;
+    --line:#E4E1DA;
+    --panel:#FFFFFF;
+    --tier1:var(--trust);
+    --tier2:var(--insight);
+    --tier3:#B98FCC;
+    --other:#D9D5CC;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--base);
+    color:var(--core);
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    max-width:860px;
+    margin:0 auto;
+    padding:56px 40px 80px;
+  }
+  .kicker{
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--trust);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .kicker::before{
+    content:"";
+    width:26px;
+    height:1px;
+    background:var(--edge);
+    display:inline-block;
+  }
+  h1{
+    font-family:'Inter', sans-serif;
+    font-weight:900;
+    font-size:40px;
+    line-height:1.12;
+    color:var(--core);
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    font-family:'Inter', sans-serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:18px;
+    color:var(--grey);
+    margin:0 0 34px;
+    max-width:560px;
+  }
+  .divider{
+    height:2px;
+    background:linear-gradient(90deg, var(--edge) 0 48px, var(--line) 48px 100%);
+    margin:32px 0;
+  }
+  .lede{
+    font-size:17px;
+    line-height:1.65;
+    max-width:640px;
+    margin-bottom:8px;
+  }
+  .lede strong{ color:var(--core); }
+  .stat-row{
+    display:flex;
+    gap:28px;
+    margin:34px 0 8px;
+    flex-wrap:wrap;
+  }
+  .stat{
+    flex:1 1 150px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-top:3px solid var(--trust);
+    padding:16px 18px;
+  }
+  .stat .num{
+    font-family:'Inter', sans-serif;
+    font-size:26px;
+    color:var(--core);
+    font-weight:900;
+  }
+  .stat .lbl{
+    font-size:12px;
+    color:var(--grey);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-top:4px;
+  }
+  .stat .sub{
+    font-size:11px;
+    color:var(--grey);
+    margin-top:6px;
+    font-style:italic;
+  }
+  h2{
+    font-family:'Inter', sans-serif;
+    font-weight:900;
+    font-size:22px;
+    color:var(--core);
+    margin:48px 0 6px;
+  }
+  .section-note{
+    font-size:13px;
+    color:var(--grey);
+    margin-bottom:22px;
+  }
+  .bar-block{ margin-bottom:38px; }
+  .bar-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:10px;
+  }
+  .bar-head .name{
+    font-family:'Inter', sans-serif; font-weight:700;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--core);
+    font-weight:500;
+  }
+  .bar-head .size{
+    font-size:13px;
+    color:var(--grey);
+  }
+  .bar{
+    display:flex;
+    width:100%;
+    height:38px;
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .seg{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    position:relative;
+    white-space:nowrap;
+    overflow:hidden;
+  }
+  .seg.other{
+    color:var(--grey);
+    background:var(--other) !important;
+  }
+  .legend{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-top:10px;
+  }
+  .legend-item{
+    font-size:12px;
+    color:var(--grey);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-right:16px;
+  }
+  .legend-swatch{
+    width:10px;height:10px;
+    display:inline-block;
+  }
+  .genesys-note{
+    background:#F4F0FA;
+    border-left:3px solid var(--trust);
+    padding:12px 16px;
+    font-size:13px;
+    color:var(--core);
+    margin-top:4px;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:14px;
+    font-size:14px;
+  }
+  th{
+    text-align:left;
+    font-family:'Inter', sans-serif; font-weight:700;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--grey);
+    font-weight:500;
+    padding:10px 12px;
+    border-bottom:2px solid var(--trust);
+  }
+  td{
+    padding:12px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  tr:hover td{ background:#FBFAF7; }
+  .vendor-name{ font-weight:600; }
+  .tier-pill{
+    display:inline-block;
+    font-family:'Inter', sans-serif; font-weight:700;
+    font-size:11.5px;
+    padding:3px 9px;
+    border-radius:2px;
+    background:#F4F0FA;
+    color:var(--core);
+    white-space:nowrap;
+  }
+  .tier-pill.verified{
+    background:var(--trust);
+    color:#fff;
+  }
+  .model-tag{
+    font-size:12.5px;
+    color:var(--grey);
+  }
+  footer{
+    margin-top:52px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .footnotes{
+    font-size:12px;
+    color:var(--grey);
+    line-height:1.7;
+  }
+  .footnotes .fn-title{
+    font-weight:600;
+    color:var(--core);
+  }
+  .footnotes p{ margin:0 0 10px; }
+  .brand-foot{
+    margin-top:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Inter', sans-serif; font-weight:700;
+    font-size:11px;
+    color:var(--grey);
+    letter-spacing:0.05em;
+  }
+  @media (max-width:600px){
+    .page{padding:36px 20px 60px;}
+    h1{font-size:30px;}
+    .stat-row{gap:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
 
-        <div class="theme-toggle" id="theme-toggle" role="button" tabindex="0" aria-label="Toggle dark mode">
-              <span class="dot"></span>span><span id="theme-toggle-label">Dark mode</span>span>
-        </div>div>
+  <div class="kicker">Signal · Market Data</div>
+  <h1>North America's Contact Center Market Is Splitting Into Two Very Different Races</h1>
+  <p class="subtitle">On-premises still has a clear leader. On a primary-source basis, so does cloud — though the two aren't measured the same way yet.</p>
 
-        <div class="kicker">Signal &middot; Market Data</div>div>
-        <h1>North America's Contact Center Market Is Splitting Into Two Very Different Races</h1>
-      <p class="subtitle">On-premises still has a clear leader. On a primary-source basis, so does cloud &mdash; though the two aren't measured the same way yet.</p>p>
-    
-      <div class="divider"></div>div>
-    
-      <p class="lede">
-        North America's contact center market &mdash; CCaaS and on-premises combined &mdash; sits at roughly
-        <strong>~$3.7B&ndash;$3.9B in 2025</strong>. Split it in two, though, and the competitive picture changes completely.
-        On-premises is a legacy stronghold: <strong>Avaya alone holds close to a third of it</strong>.
-        CCaaS looked leaderless on analyst composites alone &mdash; but Five9's own audited filings put it ahead of
-        the pack once isolated to pure-play subscription revenue, a bar its peers aren't yet measured against    the same way. Over a third of the category still sits outside the named top five.
-      </p>p>
-    
-      <div class="stat-row">
-          <div class="stat"><div class="num">~$3.7&ndash;$3.9B</div>div><div class="lbl">Combined NA market, 2025</div>div></div>div>
-          <div class="stat"><div class="num">30&ndash;38%</div>div><div class="lbl">Avaya's on-prem tier</div>div></div>div>
-          <div class="stat">
-                <div class="num">29.5&ndash;33.8%</div>div>
-                <div class="lbl">Five9's CCaaS tier &mdash; SEC-verified, largest measured</div>div>
-                <div class="sub">NiCE's analyst-composite estimate: 20&ndash;25%</div>div>
-          </div>div>
-          <div class="stat"><div class="num">~37%</div>div><div class="lbl">Share held outside the top 5</div>div></div>div>
-      </div>div>
-    
-      <h2>CCaaS &mdash; ~$2.7B&ndash;$2.8B</h2>
-      <p class="section-note">On an SEC-verified basis, Five9 clears more than a quarter of the market; on the analyst-composite basis its peers are measured on, none does. Over a third of the category still sits outside the named top five.</p>p>
-      <div class="bar-block">
-          <div class="bar-head"><span class="name">Cloud contact center platforms</span>span><span class="size">Category base: ~$2.7B&ndash;$2.8B</span>span></div>div>
-          <div class="bar">
-                <div class="seg" style="width:31.6%; background:var(--tier1);">Five9</div>div>
-                <div class="seg" style="width:22.5%; background:var(--tier2);">NiCE</div>div>
-                <div class="seg" style="width:9.5%; background:var(--tier3);">Amazon</div>div>
-                <div class="seg other" style="width:36.4%;">Other / Genesys / long tail</div>div>
-          </div>div>
-          <div class="legend">
-                <span class="legend-item"><span class="legend-swatch" style="background:var(--tier1);"></span>span>Five9 &mdash; Tier 1 (29.5&ndash;33.8%, SEC-verified)</span>span>
-                <span class="legend-item"><span class="legend-swatch" style="background:var(--tier2);"></span>span>NiCE &mdash; Tier 2 (20&ndash;25%, analyst composite)</span>span>      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier3);"></span>span>Amazon Connect &mdash; Tier 3 (8&ndash;11%)</span>span>
-                <span class="legend-item"><span class="legend-swatch" style="background:var(--other);"></span>span>Other / long tail</span>span>
-          </div>div>
-      </div>div>
-    
-      <h2>On-Premises &mdash; ~$1.0B&ndash;$1.1B</h2>
-      <p class="section-note">The opposite shape: one legacy vendor still commands a real plurality.</p>p>
-      <div class="bar-block">
-          <div class="bar-head"><span class="name">On-premises contact center systems</span>span><span class="size">Category base: ~$1.0B&ndash;$1.1B</span>span></div>div>
-          <div class="bar">
-                <div class="seg" style="width:34%; background:var(--tier1);">Avaya</div>div>
-                <div class="seg" style="width:9.5%; background:var(--tier3);">Cisco</div>div>
-                <div class="seg other" style="width:56.5%;">Other / Genesys / long tail</div>div>
-          </div>div>
-          <div class="legend">
-                <span class="legend-item"><span class="legend-swatch" style="background:var(--tier1);"></span>span>Avaya &mdash; Tier 1 (30&ndash;38%)</span>span>
-                <span class="legend-item"><span class="legend-swatch" style="background:var(--tier3);"></span>span>Cisco &mdash; Tier 3 (8&ndash;11%)</span>span>
-                <span class="legend-item"><span class="legend-swatch" style="background:var(--other);"></span>span>Other / long tail</span>span>
-          </div>div>
-      </div>div>
-    
-      <div class="genesys-note">
-          <strong>Genesys sits outside both bars.</strong> It's one of the few vendors with real, sizeable presence
-          in cloud and on-premises at once &mdash; Combined Tier 1 (15&ndash;20%) of the full ~$3.7&ndash;$3.9B market, rather than
-          a single-category share.
-      </div>div>
-    
-      <h2>Full Position Table</h2>
-      <table>
-            <thead>
-                    <tr>
-                              <th>Vendor</th>
-                    <th>Deployment Model</th>
-                    <th>Market Tier</th>
-                    <th>Category Base</th>
-                    </tr>
-            </thead>
-          <tbody>
-                  <tr>
-                            <td class="vendor-name">Five9<sup>*</sup></td>td>
-              <td class="model-tag">CCaaS Only</td>td>        <td><span class="tier-pill verified">CCaaS T1 &middot; 29.5&ndash;33.8%</span>span></td>
-              <td>CCaaS (~$2.7&ndash;$2.8B)</td>
-                  </tr>
-            <tr>
-                      <td class="vendor-name">Genesys</td>td>
-                      <td class="model-tag">CCaaS + On-Premises</td>td>
-                      <td><span class="tier-pill">Combined T1 &middot; 15&ndash;20%</span>span></td>td>
-                      <td>Combined (~$3.7&ndash;$3.9B)</td>td>
-            </tr>
-                  <tr>
-                            <td class="vendor-name">NiCE</td>td>
-                            <td class="model-tag">CCaaS Only</td>td>
-                            <td><span class="tier-pill">CCaaS T2 &middot; 20&ndash;25%</span>span></td>
-              <td>CCaaS (~$2.7&ndash;$2.8B)</td>
-                  </tr>
-            <tr>
-                      <td class="vendor-name">Amazon Connect</td>td>
-                      <td class="model-tag">CCaaS Only</td>td>
-                      <td><span class="tier-pill">CCaaS T3 &middot; 8&ndash;11%</span>span></td>td>
-                      <td>CCaaS (~$2.7&ndash;$2.8B)</td>td>
-            </tr>
-                  <tr>
-                            <td class="vendor-name">Avaya</td>td>
-                            <td class="model-tag">CCaaS + On-Prem / Hybrid</td>td>
-                            <td><span class="tier-pill">On-Prem T1 &middot; 30&ndash;38%</span>span></td>
-              <td>On-Prem (~$1.0&ndash;$1.1B)</td>
-                  </tr>
-            <tr>
-                      <td class="vendor-name">Cisco</td>td>
-                      <td class="model-tag">CCaaS + On-Prem / Hybrid</td>td>
-                      <td><span class="tier-pill">On-Prem T3 &middot; 8&ndash;11%</span>span></td>td>
-                      <td>On-Prem (~$1.0&ndash;$1.1B)</td>td>
-            </tr>
-                  <tr>
-                            <td class="vendor-name">Other / Long Tail<sup>&dagger;</sup></td>td>
-              <td class="model-tag">Both</td>td>
-              <td><span class="tier-pill">~37% combined</span>span></td>
-              <td>Respective bases</td>
-                  </tr>
-          </tbody>
-      </table>
-    
-      <footer>
-            <div class="footnotes">
-                    <p><span class="fn-title">Source Attribution.</span>span> Market estimates incorporate secondary, desktop research, audited SEC filings for select vendors (see Methodology & Data Hierarchy Note below), and publicly available disclosures.</p></p>
-      </footer></td></td></sup>
-                  </tr>
-            </tr></td></td>
-                  </tr>
-            </tr></td></td>
-                  </tr>
-            </tr></td></td></sup>
-                  </tr>
-          </tbody></th></th>
-                    </tr>
-            </thead>
-      </table></strong></strong></h1>
-  </body>
-  </style></title>
-  </head>      <p><span class="fn-title">Category-Scoped Tiers.</span>span> Market tiers are calculated directly against each vendor's primary deployment market base (~$2.7&ndash;$2.8B for CCaaS; ~$1.0&ndash;$1.1B for On-Premises). Genesys is evaluated against the combined ~$3.7&ndash;$3.9B market due to its dual presence. Five9's Tier 1 range (29.5&ndash;33.8%) is derived from audited SEC filings; NiCE's Tier 2 (20&ndash;25%) and Amazon Connect's Tier 3 (8&ndash;11%) reflect analyst-composite estimates. These figures are not measured on a like-for-like basis &mdash; see the Methodology & Data Hierarchy Note.</p>
-      <p><span class="fn-title">Portfolio Placement.</span>span> Deployment models reflect full portfolio offerings. For vendors with hybrid or cloud offerings sitting outside their top-5 ranking (Avaya AXP, Cisco Webex CCaaS), secondary deployment revenues sit within the respective "Other" categories.</p>      <p><span class="fn-title">* Methodology &amp; Data Hierarchy Note.</span>span> Five9 Data Basis: Derived directly from audited SEC disclosures (FY2025 Form 10-K/8-K). Reflects pure software subscription revenue ($930.8M subscription base at 81% of total revenue). The US-only subscription floor of $826.5M establishes a conservative lower bound of 29.5%&ndash;30.6% against the $2.7B&ndash;$2.8B North American CCaaS baseline. True NA share is bounded above by 33.8%, assuming a similar subscription mix internationally &mdash; not independently confirmed. Peer Data Asymmetry: Peer vendor market shares (NiCE, Genesys, Amazon Connect) rely on desk research estimates and secondary market benchmarks. While NiCE's global CX-cloud revenue is verified at $1,869.7M (reflecting its 83.53% Customer Engagement segment split), its primary filings do not break out a North American-specific subscription line. AWS Connect revenue is unseparated within corporate AWS disclosures, and Genesys is privately held. Direct comparisons between SEC-derived pure-play data (Five9) and desk research composites carry natural boundary and reporting variances.</p>
-      <p><span class="fn-title">&dagger; Consolidated Other Bucket.</span>span> The "Other" row includes Talkdesk (~6% CCaaS), Alvaria (~7% On-Prem), and Enghouse (~5% On-Prem), consolidated from top-5 inputs for presentation brevity.</p>
-      <p><span class="fn-title">MultiCaaS Entrants.</span>span> "Other" also includes MultiCaaS entrants (RingCentral, Zoom, 8x8) whose primary business is UCaaS with CCaaS as a secondary offering. None of the three discloses CCaaS-specific revenue &mdash; all three report as a single operating segment. 8x8 has stated a strategic shift toward CCaaS and discontinued ARR reporting in FY2025 due to growing CCaaS/CPaaS revenue mix, though no dollar or percentage figure is disclosed.</p>
-</html>div>
+  <div class="divider"></div>
+
+  <p class="lede">
+    North America's contact center market — CCaaS and on-premises combined — sits at roughly
+    <strong>~$3.7B–$3.9B in 2025</strong>. Split it in two, though, and the competitive picture changes completely.
+    On-premises is a legacy stronghold: <strong>Avaya alone holds close to a third of it</strong>.
+    CCaaS looked leaderless on analyst composites alone — but Five9's own audited filings put it ahead of
+    the pack once isolated to pure-play subscription revenue, a bar its peers aren't yet measured against
+    the same way. Over a third of the category still sits outside the named top five.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat"><div class="num">~$3.7–$3.9B</div><div class="lbl">Combined NA market, 2025</div></div>
+    <div class="stat"><div class="num">30–38%</div><div class="lbl">Avaya's on-prem tier</div></div>
+    <div class="stat">
+      <div class="num">29.5–33.8%</div>
+      <div class="lbl">Five9's CCaaS tier — SEC-verified, largest measured</div>
+      <div class="sub">NiCE's analyst-composite estimate: 20–25%</div>
+    </div>
+    <div class="stat"><div class="num">~37%</div><div class="lbl">Share held outside the top 5</div></div>
+  </div>
+
+  <h2>CCaaS — ~$2.7B–$2.8B</h2>
+  <p class="section-note">On an SEC-verified basis, Five9 clears more than a quarter of the market; on the analyst-composite basis its peers are measured on, none does. Over a third of the category still sits outside the named top five.</p>
+  <div class="bar-block">
+    <div class="bar-head"><span class="name">Cloud contact center platforms</span><span class="size">Category base: ~$2.7B–$2.8B</span></div>
+    <div class="bar">
+      <div class="seg" style="width:31.6%; background:var(--tier1);">Five9</div>
+      <div class="seg" style="width:22.5%; background:var(--tier2);">NiCE</div>
+      <div class="seg" style="width:9.5%; background:var(--tier3);">Amazon</div>
+      <div class="seg other" style="width:36.4%;">Other / Genesys / long tail</div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier1);"></span>Five9 — Tier 1 (29.5–33.8%, SEC-verified)</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier2);"></span>NiCE — Tier 2 (20–25%, analyst composite)</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier3);"></span>Amazon Connect — Tier 3 (8–11%)</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--other);"></span>Other / long tail</span>
+    </div>
+  </div>
+
+  <h2>On-Premises — ~$1.0B–$1.1B</h2>
+  <p class="section-note">The opposite shape: one legacy vendor still commands a real plurality.</p>
+  <div class="bar-block">
+    <div class="bar-head"><span class="name">On-premises contact center systems</span><span class="size">Category base: ~$1.0B–$1.1B</span></div>
+    <div class="bar">
+      <div class="seg" style="width:34%; background:var(--tier1);">Avaya</div>
+      <div class="seg" style="width:9.5%; background:var(--tier3);">Cisco</div>
+      <div class="seg other" style="width:56.5%;">Other / Genesys / long tail</div>
+    </div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier1);"></span>Avaya — Tier 1 (30–38%)</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--tier3);"></span>Cisco — Tier 3 (8–11%)</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--other);"></span>Other / long tail</span>
+    </div>
+  </div>
+
+  <div class="genesys-note">
+    <strong>Genesys sits outside both bars.</strong> It's one of the few vendors with real, sizeable presence
+    in cloud and on-premises at once — Combined Tier 1 (15–20%) of the full ~$3.7–$3.9B market, rather than
+    a single-category share.
+  </div>
+
+  <h2>Full Position Table</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Vendor</th>
+        <th>Deployment Model</th>
+        <th>Market Tier</th>
+        <th>Category Base</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="vendor-name">Five9<sup>*</sup></td>
+        <td class="model-tag">CCaaS Only</td>
+        <td><span class="tier-pill verified">CCaaS T1 · 29.5–33.8%</span></td>
+        <td>CCaaS (~$2.7–$2.8B)</td>
+      </tr>
+      <tr>
+        <td class="vendor-name">Genesys</td>
+        <td class="model-tag">CCaaS + On-Premises</td>
+        <td><span class="tier-pill">Combined T1 · 15–20%</span></td>
+        <td>Combined (~$3.7–$3.9B)</td>
+      </tr>
+      <tr>
+        <td class="vendor-name">NiCE</td>
+        <td class="model-tag">CCaaS Only</td>
+        <td><span class="tier-pill">CCaaS T2 · 20–25%</span></td>
+        <td>CCaaS (~$2.7–$2.8B)</td>
+      </tr>
+      <tr>
+        <td class="vendor-name">Amazon Connect</td>
+        <td class="model-tag">CCaaS Only</td>
+        <td><span class="tier-pill">CCaaS T3 · 8–11%</span></td>
+        <td>CCaaS (~$2.7–$2.8B)</td>
+      </tr>
+      <tr>
+        <td class="vendor-name">Avaya</td>
+        <td class="model-tag">CCaaS + On-Prem / Hybrid</td>
+        <td><span class="tier-pill">On-Prem T1 · 30–38%</span></td>
+        <td>On-Prem (~$1.0–$1.1B)</td>
+      </tr>
+      <tr>
+        <td class="vendor-name">Cisco</td>
+        <td class="model-tag">CCaaS + On-Prem / Hybrid</td>
+        <td><span class="tier-pill">On-Prem T3 · 8–11%</span></td>
+        <td>On-Prem (~$1.0–$1.1B)</td>
+      </tr>
+      <tr>
+        <td class="vendor-name">Other / Long Tail<sup>†</sup></td>
+        <td class="model-tag">Both</td>
+        <td><span class="tier-pill">~37% combined</span></td>
+        <td>Respective bases</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>
+    <div class="footnotes">
+      <p><span class="fn-title">Source Attribution.</span> Market estimates incorporate secondary, desktop research, audited SEC filings for select vendors (see Methodology & Data Hierarchy Note below), and publicly available disclosures.</p>
+      <p><span class="fn-title">Category-Scoped Tiers.</span> Market tiers are calculated directly against each vendor's primary deployment market base (~$2.7–$2.8B for CCaaS; ~$1.0–$1.1B for On-Premises). Genesys is evaluated against the combined ~$3.7–$3.9B market due to its dual presence. Five9's Tier 1 range (29.5–33.8%) is derived from audited SEC filings; NiCE's Tier 2 (20–25%) and Amazon Connect's Tier 3 (8–11%) reflect analyst-composite estimates. These figures are not measured on a like-for-like basis — see the Methodology & Data Hierarchy Note.</p>
+      <p><span class="fn-title">Portfolio Placement.</span> Deployment models reflect full portfolio offerings. For vendors with hybrid or cloud offerings sitting outside their top-5 ranking (Avaya AXP, Cisco Webex CCaaS), secondary deployment revenues sit within the respective "Other" categories.</p>
+      <p><span class="fn-title">* Methodology &amp; Data Hierarchy Note.</span> Five9 Data Basis: Derived directly from audited SEC disclosures (FY2025 Form 10-K/8-K). Reflects pure software subscription revenue ($930.8M subscription base at 81% of total revenue). The US-only subscription floor of $826.5M establishes a conservative lower bound of 29.5%–30.6% against the $2.7B–$2.8B North American CCaaS baseline. True NA share is bounded above by 33.8%, assuming a similar subscription mix internationally — not independently confirmed. Peer Data Asymmetry: Peer vendor market shares (NiCE, Genesys, Amazon Connect) rely on desk research estimates and secondary market benchmarks. While NiCE's global CX-cloud revenue is verified at $1,869.7M (reflecting its 83.53% Customer Engagement segment split), its primary filings do not break out a North American-specific subscription line. AWS Connect revenue is unseparated within corporate AWS disclosures, and Genesys is privately held. Direct comparisons between SEC-derived pure-play data (Five9) and desk research composites carry natural boundary and reporting variances.</p>
+      <p><span class="fn-title">† Consolidated Other Bucket.</span> The "Other" row includes Talkdesk (~6% CCaaS), Alvaria (~7% On-Prem), and Enghouse (~5% On-Prem), consolidated from top-5 inputs for presentation brevity.</p>
+      <p><span class="fn-title">MultiCaaS Entrants.</span> "Other" also includes MultiCaaS entrants (RingCentral, Zoom, 8x8) whose primary business is UCaaS with CCaaS as a secondary offering. None of the three discloses CCaaS-specific revenue — all three report as a single operating segment. 8x8 has stated a strategic shift toward CCaaS and discontinued ARR reporting in FY2025 due to growing CCaaS/CPaaS revenue mix, though no dollar or percentage figure is disclosed.</p>
+    </div>
     <div class="brand-foot">
-          <span>SO WHAT NOW WHAT</span>
-          <span>NA CONTACT CENTER &middot; 2025 ESTIMATE</span>    </div>div>
-</footer>
+      <span>SO WHAT NOW WHAT</span>
+      <span>NA CONTACT CENTER · 2025 ESTIMATE</span>
+    </div>
+  </footer>
 
 </div>
-
-<script>
-    (function () {
-          var STORAGE_KEY = 'swnw-theme';
-          var root = document.documentElement;
-          var toggle = document.getElementById('theme-toggle');
-          var label = document.getElementById('theme-toggle-label');
-
-          function applyTheme(theme) {
-                  if (theme === 'dark') {
-                            root.setAttribute('data-theme', 'dark');
-                            label.textContent = 'Light mode';
-                  } else {
-                            root.removeAttribute('data-theme');
-                            label.textContent = 'Dark mode';
-                  }
-          }
-
-          function getInitialTheme() {
-                  var stored = localStorage.getItem(STORAGE_KEY);
-                  if (stored === 'dark' || stored === 'light') return stored;
-                  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          }
-
-          var current = getInitialTheme();
-          applyTheme(current);
-
-          function toggleTheme() {
-                  current = current === 'dark' ? 'light' : 'dark';
-                  applyTheme(current);
-                  localStorage.setItem(STORAGE_KEY, current);
-          }
-
-          toggle.addEventListener('click', toggleTheme);
-          toggle.addEventListener('keydown', function (e) {
-                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
-          });
-    })();
-</script>
-
 </body>
 </html>
-
-</script></span></span></p></p>
